@@ -9,8 +9,7 @@ class TicTacToe(tkinter.Canvas):
         self.game_field = {0:(0,0), 1:(1,0), 2:(2,0), 3:(0,1), 4:(1,1), 5:(2,1), 6:(0,2), 7:(1,2), 8:(2,2)}
         self.pack()
         self.draw_lines()
-        self.bind('<Button-1>', self.click) 
-    
+        self.bind('<Button-1>', self.click)    
    
     def nullify_state(self):
         self.state = [None,None,None,None,None,None,None,None,None]
@@ -35,8 +34,7 @@ class TicTacToe(tkinter.Canvas):
             self.create_text(150, 150, text=result, fill='blue')
             time.sleep(2)
             self.delete('all') 
-            self.restart_game()
-            
+            self.restart_game()            
     
     def restart_game(self):
         self.nullify_state()
@@ -44,8 +42,7 @@ class TicTacToe(tkinter.Canvas):
         time.sleep(2)
         self.delete('all')
         self.update()
-        self.draw_lines()
-        
+        self.draw_lines()        
        
     def get_empty_cells_indexes(self):
         list_of_indexes = []
@@ -66,17 +63,14 @@ class TicTacToe(tkinter.Canvas):
         self.create_line(100, 0, 100, 300, fill='grey')
         self.create_line(200, 0, 200, 300, fill='grey')
         self.create_line(0, 100, 300, 100, fill='grey')
-        self.create_line(0, 200, 300, 200, fill='grey')
-   
+        self.create_line(0, 200, 300, 200, fill='grey')   
      
     def draw_x(self, column, row): 
         self.create_line(column*100, row*100,column*100 + 100,row*100 + 100, width=5, fill='green')
-        self.create_line(column*100,row*100 + 100,column*100 + 100,row*100,width=5, fill='green')
-    
+        self.create_line(column*100,row*100 + 100,column*100 + 100,row*100,width=5, fill='green')    
       
     def draw_o(self, column, row): 
-        self.create_oval(column*100,row*100,(column*100) + 100,(row*100) + 100, width=5, outline='red')
-    
+        self.create_oval(column*100,row*100,(column*100) + 100,(row*100) + 100, width=5, outline='red')    
    
     def get_winner(self):
         winner_combinations = [
