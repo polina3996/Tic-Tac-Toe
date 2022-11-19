@@ -95,10 +95,8 @@ class TicTacToe(tkinter.Canvas):
             if i == None:
                 return None 
         return 'draw'        
-            
-            
+                     
 tk_window = tkinter.Tk()
 game = TicTacToe(tk_window)
-
 
 game.mainloop()
