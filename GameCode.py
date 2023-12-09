@@ -2,7 +2,7 @@ import tkinter
 import random
 import time
 
-class TicTacToe(tkinter.Canvas):
+class TicTacToeCanvas(tkinter.Canvas):
     def __init__(self, window):
         super().__init__(window, width=300, height=300)
         self.nullify_state()
@@ -16,12 +16,15 @@ class TicTacToe(tkinter.Canvas):
         
     #processing of clicking on canvas method
     def click(self, event):
+        if (self.get_winner()):
+            self.delete('all') 
+            self.restart_game()
+            return
         x = event.x  
         y = event.y 
         column = x // 100
         row = y // 100 
         i = column + row*3 
-        
         if self.state[i] != None:
             return 
         self.state[i] = 'x'
@@ -31,15 +34,13 @@ class TicTacToe(tkinter.Canvas):
             self.bot_move()
             result = self.get_winner()
         if result != None:
-            self.create_text(150, 150, text=result, fill='blue')
-            time.sleep(2)
-            self.delete('all') 
-            self.restart_game()            
+            self.create_text(150, 150, text=f"{result}. Click anywhere to start new game", fill='blue')
+            return
     
     def restart_game(self):
         self.nullify_state()
         self.create_text(150,150,text='restarting game...',fill='blue')
-        time.sleep(2)
+        
         self.delete('all')
         self.update()
         self.draw_lines()        
@@ -47,7 +48,7 @@ class TicTacToe(tkinter.Canvas):
     def get_empty_cells_indexes(self):
         list_of_indexes = []
         for index, i in enumerate(self.state):
-            if i == None:e
+            if i == None:
                 list_of_indexes.append(index)
         return list_of_indexes        
     
@@ -95,8 +96,4 @@ class TicTacToe(tkinter.Canvas):
             if i == None:
                 return None 
         return 'draw'        
-                     
-tk_window = tkinter.Tk()
-game = TicTacToe(tk_window)
-
-game.mainloop()
+     
